@@ -1,0 +1,95 @@
+<mxfile host="app.diagrams.net" agent="Antigravity">
+  <diagram id="C4-Context-TechCup" name="C4 Nivel 1 - Contexto TECH CUP FÚTBOL">
+    <mxGraphModel dx="2924" dy="704" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1;fontColor=#1B2A4A;" value="Diagrama C4 - Nivel 1: Contexto del Sistema TECH CUP FÚTBOL" vertex="1">
+          <mxGeometry height="40" width="670" x="250" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="system" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0B4884;fontColor=#FFFFFF;fontSize=13;arcSize=10;shadow=1;" value="&lt;b&gt;TECH CUP FÚTBOL&lt;/b&gt;&lt;br&gt;&lt;i&gt;[Sistema de Software]&lt;/i&gt;&lt;br&gt;&lt;br&gt;Plataforma web centralizada para la gestión integral del torneo: registro, equipos, torneos, arbitraje en vivo y estadísticas." vertex="1">
+          <mxGeometry height="150" width="250" x="460" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="actor_player" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#08427B;strokeColor=#052E56;fontColor=#FFFFFF;fontSize=11;arcSize=15;" value="&lt;b&gt;Estudiante / Jugador&lt;/b&gt;&lt;br&gt;&lt;i&gt;[Persona]&lt;/i&gt;&lt;br&gt;&lt;br&gt;Estudiante activo con correo institucional. Se registra, crea perfil deportivo, busca equipos y consulta estadísticas." vertex="1">
+          <mxGeometry height="100" width="200" x="80" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="actor_captain" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#08427B;strokeColor=#052E56;fontColor=#FFFFFF;fontSize=11;arcSize=15;" value="&lt;b&gt;Capitán de Equipo&lt;/b&gt;&lt;br&gt;&lt;i&gt;[Persona - Rol]&lt;/i&gt;&lt;br&gt;&lt;br&gt;Jugador líder que crea y administra el equipo, postula la inscripción, sube comprobantes y define alineaciones." vertex="1">
+          <mxGeometry height="100" width="200" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="actor_external_user" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#08427B;strokeColor=#052E56;fontColor=#FFFFFF;fontSize=11;arcSize=15;" value="&lt;b&gt;Graduado / Familiar&lt;/b&gt;&lt;br&gt;&lt;i&gt;[Persona]&lt;/i&gt;&lt;br&gt;&lt;br&gt;Usuario externo con cuenta Gmail. Participa como jugador o capitán invitado en el torneo." vertex="1">
+          <mxGeometry height="100" width="200" y="345" as="geometry" />
+        </mxCell>
+        <mxCell id="actor_referee" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#08427B;strokeColor=#052E56;fontColor=#FFFFFF;fontSize=11;arcSize=15;" value="&lt;b&gt;Árbitro&lt;/b&gt;&lt;br&gt;&lt;i&gt;[Persona]&lt;/i&gt;&lt;br&gt;&lt;br&gt;Juez de campo. Opera el módulo en vivo desde su dispositivo móvil: cronómetro, goles, tarjetas y sustituciones." vertex="1">
+          <mxGeometry height="100" width="200" x="-150" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="actor_organizer" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#08427B;strokeColor=#052E56;fontColor=#FFFFFF;fontSize=11;arcSize=15;" value="&lt;b&gt;Organizador (Admin)&lt;/b&gt;&lt;br&gt;&lt;i&gt;[Persona]&lt;/i&gt;&lt;br&gt;&lt;br&gt;Comité organizador. Configura torneos, aprueba inscripciones y pagos, asigna árbitros y monitorea métricas." vertex="1">
+          <mxGeometry height="100" width="200" x="150" y="585" as="geometry" />
+        </mxCell>
+        <mxCell id="ext_smtp" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6C757D;strokeColor=#495057;fontColor=#FFFFFF;fontSize=11;arcSize=10;" value="&lt;b&gt;Servidor de Correo (SMTP)&lt;/b&gt;&lt;br&gt;&lt;i&gt;[Sistema Externo]&lt;/i&gt;&lt;br&gt;&lt;br&gt;Servicio de mensajería para envío de códigos OTP de autenticación, alertas de partidos y notificaciones." vertex="1">
+          <mxGeometry height="100" width="210" x="890" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="ext_maps" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6C757D;strokeColor=#495057;fontColor=#FFFFFF;fontSize=11;arcSize=10;" value="&lt;b&gt;Servicio de Mapas&lt;/b&gt;&lt;br&gt;&lt;i&gt;[Sistema Externo]&lt;/i&gt;&lt;br&gt;&lt;br&gt;Servicio geográfico externo que provee la ubicación e indicaciones para llegar a las canchas del campus." vertex="1">
+          <mxGeometry height="100" width="210" x="1000" y="345" as="geometry" />
+        </mxCell>
+        <mxCell id="ext_storage" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6C757D;strokeColor=#495057;fontColor=#FFFFFF;fontSize=11;arcSize=10;" value="&lt;b&gt;Almacenamiento de Archivos&lt;/b&gt;&lt;br&gt;&lt;i&gt;[Sistema Externo]&lt;/i&gt;&lt;br&gt;&lt;br&gt;Base de datos en la nube para fotos de perfil, escudos oficiales de equipos y comprobantes de pago." vertex="1">
+          <mxGeometry height="100" width="210" x="920" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="edge1" edge="1" parent="1" source="actor_player" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.25;entryY=0;entryDx=0;entryDy=0;strokeColor=#08427B;fontSize=10;" target="system" value="Consulta partidos, estadísticas y registra perfil">
+          <mxGeometry relative="1" x="-0.0635" y="40" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="370" y="150" />
+              <mxPoint x="370" y="250" />
+              <mxPoint x="522.53" y="250" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge2" edge="1" parent="1" source="actor_captain" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.35;entryDx=0;entryDy=0;strokeColor=#08427B;fontSize=10;" target="system" value="Administra equipo, inscribe y define alineaciones">
+          <mxGeometry relative="1" x="-0.162" as="geometry">
+            <mxPoint y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge3" edge="1" parent="1" source="actor_external_user" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.55;entryDx=0;entryDy=0;strokeColor=#08427B;fontSize=10;" target="system" value="Registro con Gmail y participación">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge4" edge="1" parent="1" source="actor_referee" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.75;entryDx=0;entryDy=0;strokeColor=#08427B;fontSize=10;" target="system" value="Registra eventos del partido en vivo (minuto a minuto)">
+          <mxGeometry relative="1" x="-0.0552" y="15" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge5" edge="1" parent="1" source="actor_organizer" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.95;entryDx=0;entryDy=0;strokeColor=#08427B;fontSize=10;" target="system" value="Crea torneos, valida pagos, asigna jueces y monitorea">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge6" edge="1" parent="1" source="system" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#6C757D;fontSize=10;" target="ext_smtp" value="Solicita envío de códigos OTP y correos">
+          <mxGeometry relative="1" x="-0.1739" as="geometry">
+            <mxPoint y="1" as="offset" />
+            <Array as="points">
+              <mxPoint x="647.47" y="210" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge7" edge="1" parent="1" source="system" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#6C757D;fontSize=10;" target="ext_maps" value="Consulta coordenadas e incrusta mapa de canchas">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge8" edge="1" parent="1" source="system" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.8;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#6C757D;fontSize=10;" target="ext_storage" value="Carga y recupera fotos, comprobantes y escudos">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_box" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F8F9FA;strokeColor=#DEE2E6;" value="" vertex="1">
+          <mxGeometry height="150" width="250" x="520" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#333333;" value="&lt;b&gt;Leyenda C4 Nivel 1&lt;/b&gt;" vertex="1">
+          <mxGeometry height="20" width="250" x="520" y="585" as="geometry" />
+        </mxCell>
+        <mxCell id="leg_system" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;fontColor=#FFFFFF;fontSize=9;strokeColor=#0B4884;" value="Sistema en desarrollo (TECH CUP)" vertex="1">
+          <mxGeometry height="25" width="220" x="535" y="615" as="geometry" />
+        </mxCell>
+        <mxCell id="leg_person" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#08427B;fontColor=#FFFFFF;fontSize=9;strokeColor=#052E56;" value="Persona / Actor humano" vertex="1">
+          <mxGeometry height="25" width="220" x="535" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="leg_external" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6C757D;fontColor=#FFFFFF;fontSize=9;strokeColor=#495057;" value="Sistema de software externo" vertex="1">
+          <mxGeometry height="25" width="220" x="535" y="685" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
