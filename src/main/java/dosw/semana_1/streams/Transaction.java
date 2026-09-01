@@ -1,4 +1,4 @@
-package dosw.semana_1;
+package dosw.semana_1.streams;
 
 public class Transaction {
 
