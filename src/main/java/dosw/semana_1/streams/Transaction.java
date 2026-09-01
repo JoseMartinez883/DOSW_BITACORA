@@ -35,4 +35,13 @@ public class Transaction {
     public void setApproved(boolean approved) {
         this.approved = approved;
     }
+
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "id='" + id + '\'' +
+                ", amount=" + amount +
+                ", approved=" + approved +
+                '}';
+    }
 }
