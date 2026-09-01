@@ -313,7 +313,7 @@ public class Ejercisio1 {
 
 ---
 
-### Ejercicio 02 – Transformación de Nombres a Mayúsculas ⚡ [Method Reference]
+### Ejercicio 02 – Transformación de Nombres a Mayúsculas  [Method Reference]
 
 Dada una lista de nombres de Pokémon, convertir todos los nombres a letras mayúsculas utilizando Streams.
 
@@ -345,7 +345,7 @@ public class Ejercisio2 {
 
 ---
 
-### Ejercicio 03 – Suma Total de Niveles de Pokémon ⚡ [Method Reference]
+### Ejercicio 03 – Suma Total de Niveles de Pokémon  [Method Reference]
 
 Dada una lista de niveles numéricos de Pokémon, calcular la suma total de los niveles utilizando la operación `reduce`.
 
@@ -622,7 +622,7 @@ public class Ejercisio9 {
 
 ---
 
-### Ejercicio 10 – Mapeo y Recolección en Colección Personalizada ⚡ [Method Reference]
+### Ejercicio 10 – Mapeo y Recolección en Colección Personalizada  [Method ]
 
 Dada una lista de objetos `Pokemon`, extraer la lista de nombres y recolectarlos específicamente en una instancia de `ArrayList`.
 
@@ -665,7 +665,7 @@ public class Ejercisio10 {
 
 ---
 
-### Ejercicio 11 – Promedio de Poder de Combate (PC) ⚡ [Method Reference]
+### Ejercicio 11 – Promedio de Poder de Combate (PC)  [Method ]
 
 Dada una cadena formateada con un arreglo de valores de PC, procesar el texto y calcular el promedio numérico del Poder de Combate.
 
@@ -748,7 +748,7 @@ public class Ejercisio12 {
 
 ---
 
-### Ejercicio 13 – Agrupamiento de Pokémon por Tipo (`groupingBy`) ⚡ [Method Reference]
+### Ejercicio 13 – Agrupamiento de Pokémon por Tipo (`groupingBy`)  [Method ]
 
 Agrupar una lista de Pokémon por su tipo (Agua, Fuego, Planta) en un mapa ordenado (`TreeMap`).
 
@@ -796,7 +796,7 @@ public class Ejercisio13 {
 
 ---
 
-### Ejercicio 14 – Agrupamiento de Pokémon por Región ⚡ [Method Reference]
+### Ejercicio 14 – Agrupamiento de Pokémon por Región  [Method ]
 
 Dada una lista de Pokémon con su región de origen entre paréntesis (Kanto, Johto, Hoenn, Sinnoh), agruparlos manteniendo el orden de inserción (`LinkedHashMap`).
 
@@ -845,7 +845,7 @@ public class Ejercisio14 {
 
 ---
 
-### Ejercicio 15 – Identificación del Campeón de Gimnasios (Más Medallas) ⚡ [Method Reference]
+### Ejercicio 15 – Identificación del Campeón de Gimnasios (Más Medallas)  [Method ]
 
 Dada una lista de objetos `Entrenador`, encontrar al entrenador con el mayor número de medallas obtenidas.
 
@@ -926,7 +926,7 @@ public class Ejercisio16 {
 
 ---
 
-### Ejercicio 17 – Entrenador más Poderoso por PC Total del Equipo ⚡ [Method Reference]
+### Ejercicio 17 – Entrenador más Poderoso por PC Total del Equipo  [Method ]
 
 Determinar cuál es el entrenador cuyo equipo Pokémon posee el mayor poder de combate acumulado.
 
@@ -967,7 +967,7 @@ public class Ejercisio17 {
 
 ---
 
-### Ejercicio 18 – Ranking Top 5 Pokémon más Poderosos ⚡ [Method Reference]
+### Ejercicio 18 – Ranking Top 5 Pokémon más Poderosos  [Method ]
 
 Dada una lista de objetos `Pokemon`, ordenar la lista de manera descendente según su poder de combate y limitar la salida a los 5 más poderosos.
 
@@ -1007,7 +1007,7 @@ public class Ejercisio18 {
 
 ---
 
-### Ejercicio 19 – Podio de Entrenadores (Criterio Múltiple) ⚡ [Method Reference]
+### Ejercicio 19 – Podio de Entrenadores (Criterio Múltiple)  [Method ]
 
 Construir el podio (Top 3) de entrenadores aplicando un ordenamiento con múltiples criterios: primero por número de medallas, luego por poder total del equipo y finalmente por nombre.
 
@@ -1052,7 +1052,7 @@ public class Ejercisio19 {
 
 ---
 
-### Ejercicio 20 – Reporte Estadístico Completo de Pokémon ⚡ [Method Reference]
+### Ejercicio 20 – Reporte Estadístico Completo de Pokémon  [Method ]
 
 Generar un informe analítico completo que calcule: distribución de Pokémon por tipo, distribución por región, total de legendarios, promedio general de nivel y el Pokémon con el mayor poder de combate.
 
@@ -1126,7 +1126,7 @@ public class Ejercisio20 {
 
 ---
 
-### 🧬 RETO MEWTWO (+1.0 punto) – Operación Táctica: Sistema de Proyección y Élite Regional
+### RETO MEWTWO (+1.0 punto) – Operación Táctica: Sistema de Proyección y Élite Regional
 
 El Profesor Oak y el Alto Mando de la Liga Pokémon DOSW exigen un generador de reportes analíticos de élite. Dada una lista de objetos `Pokemon` (usando la clase tradicional del taller), el sistema debe procesar el flujo aplicando estrictamente en una sola cadena de Streams lo siguiente:
 
@@ -1203,6 +1203,8 @@ public class RetoMewtwo {
 ```
 
 **Captura**
+
+![Captura de ejecución Ejercicio 20](docs/images/Semana02RetoMewto.png)
 
 **Explicación:**
 
