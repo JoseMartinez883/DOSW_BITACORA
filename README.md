@@ -47,7 +47,7 @@ public class Ejercisio01 {
 
 **Captura de ejecución:**
 
-![Captura de ejecución Ejercicio 01](docs/images/Semana01Ejercisio01.png)
+![Captura de ejecución Ejercicio 01](docs/images/Semana01Ejercicio01.png)
 
 **Explicación:** Se utiliza la API de Streams sobre una lista de números enteros. Se aplican operaciones intermedias mediante `filter()` para seleccionar únicamente los elementos pares y mayores a 10. En la primera forma se encadenan dos llamados a `filter()`, mientras que en la segunda se combinan las condiciones en un único predicado con `&&`. Finalmente, la operación terminal `toList()` recolecta los datos resultantes.
 
@@ -97,7 +97,7 @@ public class Ejercisio02 {
 
 **Captura de ejecución:**
 
-![Captura de ejecución Ejercicio 01](docs/images/Semana01Ejercisio02.png)
+![Captura de ejecución Ejercicio 01](docs/images/Semana01Ejercicio02.png)
 
 **Explicación:** Se filtra el stream de palabras conservando solo las que tienen una longitud estrictamente mayor a 4 (`w.length() > 4`). Luego se realiza una transformación con `map(String::toUpperCase)` a mayúsculas y se ordenan con `sorted()`. Se presentan dos formas: una recolectando a lista y obteniendo el tamaño, y otra usando `peek()` para imprimir mientras se realiza la operación terminal de conteo `count()`.
 
@@ -152,7 +152,7 @@ public class Ejercisio03 {
 
 **Captura de ejecución:**
 
-![Captura de ejecución Ejercicio 01](docs/images/Semana01Ejercisio03.png)
+![Captura de ejecución Ejercicio 01](docs/images/Semana01Ejercicio03.png)
 
 **Explicación:** Se filtra el stream de usuarios evaluando la propiedad activa mediante `User::isActive`. Posteriormente, se transforma cada objeto `User` a su atributo `name` en mayúsculas y se ordena la lista alfabéticamente con `sorted()`. El resultado se consolida en una lista utilizando la operación terminal `toList()`.
 
@@ -193,7 +193,7 @@ public class Ejercisio04 {
 
 **Captura de ejecución:**
 
-![Captura de ejecución Ejercicio 01](docs/images/Semana01Ejercisio04.png)
+![Captura de ejecución Ejercicio 01](docs/images/Semana01Ejercicio04.png)
 
 **Explicación:** Se aplica la operación `filter` con el predicado `u -> u.getAge() >= 18` sobre el stream de objetos `User`. A continuación, se extrae la propiedad del nombre de cada usuario que cumple la condición utilizando `map(User::getName)` y se recolecta el resultado final en una lista de cadenas con `toList()`.
 
@@ -232,7 +232,7 @@ public class Ejercisio05 {
 
 **Captura de ejecución:**
 
-![Captura de ejecución Ejercicio 01](docs/images/Semana01Ejercisio05.png)
+![Captura de ejecución Ejercicio 01](docs/images/Semana01Ejercicio05.png)
 
 **Explicación:** Se convierte la lista de transacciones en un stream y se hace uso de `peek()` para imprimir cada elemento evaluado en pantalla. La evaluación principal se efectúa mediante la operación terminal `anyMatch()`, pasando como condición `!transaction.isApproved()`. Esta operación devuelve un resultado booleano (`true` si encuentra al menos una transacción no aprobada, de lo contrario `false`).
 
