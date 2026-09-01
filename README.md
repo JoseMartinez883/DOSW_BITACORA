@@ -1212,3 +1212,398 @@ public class RetoMewtwo {
 - **Integración Funcional Coherente**: El pipeline combina de manera limpia la fase de filtrado de novatos (`filter`), la proyección de datos (`map`), el ordenamiento descendente (`sorted`) y, finalmente, la consolidación mediante `Collectors.groupingBy` empalmado con `Collectors.reducing` (reducción binaria interna) para extraer al contendiente con mayor poder de combate por cada región.
 
 
+# SEMANA No 3 – Patrones de Diseño y Principios SOLID
+
+## Datos personales:
+- **Nombre y Apellido:** Jose Alejandro Martinez Arias
+- **Código de Estudiante:** 1000104385
+- **Curso:** DOSW
+
+---
+
+### Ejercicio 01 – Patrón Factory Method (Creacional)
+
+Implementación del patrón **Factory Method** para desvincular la creación de procesadores de pago (`CreditCardProccesor`, `PayPalProcessor`, `BankTransferProcessor`) de la lógica principal de cobro.
+
+**Código implementado (`MainClass.java`):**
+```java
+package dosw.semana_3.creational.ejercisio01FactoryMethod;
+
+public class MainClass {
+
+    public static void main(String[] args){
+
+        PaymentProcessor processor;
+
+        processor = new CreditCardProccesor();
+        processor.proccessPayment(100);
+
+        processor = new PayPalProcessor();
+        processor.proccessPayment(250);
+
+        processor = new BankTransferProcessor();
+        processor.proccessPayment(500);
+    }
+}
+```
+
+**Captura de ejecución:**
+
+![Captura de ejecución Ejercicio 01](../../../../docs/images/Semana03Ejercicio01.png)
+
+**Explicación:** Se define la clase abstracta `PaymentProcessor` con el método de fábrica `createPayment()`. Cada subclase concreta (`CreditCardProccesor`, `PayPalProcessor`, etc.) instancia su respectivo tipo de pago (`Payment`), cumpliendo con el principio de Inversión de Dependencias y de Abierto/Cerrado (OCP).
+
+---
+
+### Ejercicio 02 – Patrón Abstract Factory (Creacional)
+
+Implementación del patrón **Abstract Factory** para la creación de familias de objetos relacionados pertenecientes a plataformas de videojuegos (`PlayStationFactory` y `XboxFactory`).
+
+**Código implementado (`Main.java`):**
+```java
+package dosw.semana_3.creational.ejercisio02AbstractFactory;
+
+public class Main {
+
+    public static void main(String[] args){
+
+        ConsoleFactory factory;
+
+        factory = new PlayStationFactory();
+        GameEngine psEngine = new GameEngine(factory);
+        psEngine.run();
+
+        System.out.println("-----");
+
+        factory = new XboxFactory();
+        GameEngine xboxEngine = new GameEngine(factory);
+        xboxEngine.run();
+    }
+}
+```
+
+**Captura de ejecución:**
+
+![Captura de ejecución Ejercicio 02](../../../../docs/images/Semana03Ejercicio02.png)
+
+**Explicación:** La interfaz `ConsoleFactory` declara métodos para crear controles (`Controller`), juegos (`Game`) e interfaz de usuario (`UI`). Las fábricas concretas garantizan que los productos de una misma plataforma sean compatibles entre sí sin acoplar el cliente a clases concretas.
+
+---
+
+### Ejercicio 03 – Patrón Builder (Creacional)
+
+Implementación del patrón **Builder** para la construcción paso a paso de objetos complejos de juguetes (`ToyDoll`).
+
+**Código implementado (`ToyDollBuilder.java`):**
+```java
+package dosw.semana_3.creational.ejercisio03Builder;
+
+public interface ToyDollBuilder {
+
+    void builHead(String head);
+    void buildBody(String body);
+    void buildArms(String arms);
+    void buildLegs(String legs);
+    void hasAccesories(boolean hasAccesories);
+}
+```
+
+**Captura de ejecución:**
+
+![Captura de ejecución Ejercicio 03](../../../../docs/images/Semana03Ejercicio03.png)
+
+**Explicación:** Se separa el proceso de construcción de un objeto `ToyDoll` de su representación final. Mediante las clases constructoras concretas (`ActionDollBuilder`, `ClassDollBuilder`) y el director (`ToyFactory`), es posible producir distintos tipos de muñecos manteniendo un proceso de ensamblaje uniforme.
+
+---
+
+### Ejercicio 04 – Patrón Adapter (Estructural)
+
+Implementación del patrón **Adapter** para permitir que cargadores de vehículos eléctricos (`FastElectricCharger` y `SlowElectricCharger`) funcionen de manera transparente con la interfaz unificada de una estación de servicio (`FuelService`).
+
+**Código implementado (`SmartGasStation.java`):**
+```java
+package dosw.semana_3.estructural.ejercisio04Adapter;
+
+public class SmartGasStation {
+
+    public static void main(String[] args){
+
+        FuelService gasolinePump = new GasPump();
+
+        FuelService fastElectricPump = new FastChargerAdapter(new FastElectricCharger());
+
+        FuelService slowElectricPump = new SlowChargerAdapter(new SlowElectricCharger());
+
+        gasolinePump.supply(30);
+        fastElectricPump.supply(30);
+        slowElectricPump.supply(30);
+    }
+}
+```
+
+**Captura de ejecución:**
+
+![Captura de ejecución Ejercicio 04](../../../../docs/images/Semana03Ejercicio04.png)
+
+**Explicación:** Las clases adaptadoras (`FastChargerAdapter` y `SlowChargerAdapter`) implementan la interfaz requerida por el cliente (`FuelService`) y delegan la ejecución a las clases adaptadas (`FastElectricCharger` / `SlowElectricCharger`), resolviendo incompatibilidades de interfaz sin modificar el código preexistente.
+
+---
+
+### Ejercicio 05 – Patrón Bridge (Estructural)
+
+Implementación del patrón **Bridge** para desacoplar la abstracción de formas geométricas (`Forma`) de su implementación de color (`Color`).
+
+**Código implementado (`Main.java`):**
+```java
+package dosw.semana_3.estructural.ejercisio05Bridge;
+
+public class Main {
+
+    public static void main(String[] args){
+
+        Forma circuloRojo = new Circulo(new Rojo());
+        Forma cuadradoRojo = new Cuadrado(new Rojo());
+
+        Forma circuloAzul = new Circulo(new Azul());
+        Forma cuadradoAzul = new Cuadrado(new Azul());
+
+        circuloRojo.dibujar();
+        cuadradoRojo.dibujar();
+        circuloAzul.dibujar();
+        cuadradoAzul.dibujar();
+    }
+}
+```
+
+**Captura de ejecución:**
+
+![Captura de ejecución Ejercicio 05](../../../../docs/images/Semana03Ejercicio05.png)
+
+**Explicación:** Se evita la explosión combinatoria de clases jerárquicas asociando una referencia de la interfaz `Color` dentro de la jerarquía abstracta `Forma`. De esta manera, las formas (`Circulo`, `Cuadrado`) y los colores (`Rojo`, `Azul`) evolucionan independientemente.
+
+---
+
+### Ejercicio 06 – Patrón Composite (Estructural)
+
+Implementación del patrón **Composite** para representar estructuras jerárquicas de tipo árbol en un sistema de inventario de almacén (`WharehouseApp`).
+
+**Código implementado (`WharehouseApp.java`):**
+```java
+package dosw.semana_3.estructural.ejercisio06Composite;
+
+public class WharehouseApp {
+
+    public static void main(String[] args){
+
+        Product laptop = new Product("Laptop", 1200);
+        Product mouse = new Product("Mouse", 40);
+        Product keyboard = new Product("keyboard", 80);
+
+        Box accesoriesBox = new Box("Accesories Box");
+        accesoriesBox.add(mouse);
+        accesoriesBox.add(keyboard);
+
+        Box mainBox = new Box("Main Box");
+        mainBox.add(laptop);
+        mainBox.add(accesoriesBox);
+
+        System.out.println("Total price: $" + mainBox.getPrice());
+    }
+}
+```
+
+**Captura de ejecución:**
+
+![Captura de ejecución Ejercicio 06](../../../../docs/images/Semana03Ejercicio06.png)
+
+**Explicación:** Mediante la interfaz común `Item`, tanto los elementos simples (`Product`) como los contenedores compuestos (`Box`) son tratados de manera uniforme, permitiendo calcular el costo total de cajas anidadas recursivamente.
+
+---
+
+### Ejercicio 07 – Patrón Decorator (Estructural)
+
+Implementación del patrón **Decorator** para agregar atributos y funcionalidades adicionales (blindaje, radar, misiles, antitorpedos) a una embarcación (`Barco`) de manera dinámica.
+
+**Código implementado (`Main.java`):**
+```java
+package dosw.semana_3.estructural.ejercisio07Decorator;
+
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+
+public class Main {
+
+    public static void main(String[] args){
+
+        Barco barcoBase = new BarcoBase();
+
+        Map<String, Function<Barco,Barco>> mejoras = Map.of(
+                "BLINDAJE", BlindajeDecorator::new,
+                "RADAR", RadarDecorator::new,
+                "MISILES", MisilesDecorator::new,
+                "ANTITORPERDOS", AntiTorpedosDecorator::new
+        );
+
+        List<String> configuracion = List.of(
+                "BLINDAJE",
+                "RADAR",
+                "MISILES"
+        );
+
+        Barco barcoFinal = barcoBase;
+        for (String clave : configuracion) {
+            Function<Barco, Barco> decorador = mejoras.get(clave);
+            if (decorador != null) {
+                barcoFinal = decorador.apply(barcoFinal);
+            }
+        }
+
+        System.out.println(barcoFinal.getDescription());
+        System.out.println("Ataqueda: " + barcoFinal.poderAtaque());
+        System.out.println("Defensas: " + barcoFinal.defensa());
+    }
+}
+```
+
+**Captura de ejecución:**
+
+![Captura de ejecución Ejercicio 07](../../../../docs/images/Semana03Ejercicio07.png)
+
+**Explicación:** La clase abstracta `BarcoBaseDecorator` implementa la interfaz `Barco` y envuelve un objeto base. Los decoradores concretos incrementan dinámicamente las estadísticas de ataque y defensa sin alterar la estructura original de `BarcoBase`.
+
+---
+
+### Ejercicio 08 – Patrón Chain of Responsibility (Comportamiento)
+
+Implementación del patrón **Chain of Responsibility** para procesar secuencialmente solicitudes de control migratorio (`IngresoRequest`).
+
+**Código implementado (`Main.java`):**
+```java
+package dosw.semana_3.comportamiento.ejercisio08ChainOfResponsability;
+
+public class Main {
+
+    public static void main(String[] args){
+
+        ControlMigratorio pasaporte = new PasaporteControl();
+        ControlMigratorio antecedentes = new AntecedentesControl();
+        ControlMigratorio motivo = new MotivoViajeControl();
+        ControlMigratorio aprobacion = new AprobacionFinalControl();
+
+        pasaporte.setSiguiente(antecedentes);
+        antecedentes.setSiguiente(motivo);
+        motivo.setSiguiente(aprobacion);
+
+        IngresoRequest persona = new IngresoRequest(
+                true,
+                true,
+                false
+        );
+
+        pasaporte.processar(persona);
+    }
+}
+```
+
+**Captura de ejecución:**
+
+![Captura de ejecución Ejercicio 08](../../../../docs/images/Semana03Ejercicio08.png)
+
+**Explicación:** Cada eslabón de la cadena (`PasaporteControl`, `AntecedentesControl`, `MotivoViajeControl`, `AprobacionFinalControl`) decide si procesar la solicitud o pasarla al siguiente manejador, desacoplando al emisor de la petición de sus receptores.
+
+---
+
+### Ejercicio 09 – Patrón Command (Comportamiento)
+
+Implementación del patrón **Command** para encapsular acciones de un personaje de juego (`WalkCommand`, `JumpCommand`, `AttackCommand`, `DefendCommand`) como objetos independientes.
+
+**Código implementado (`Main.java`):**
+```java
+package dosw.semana_3.comportamiento.ejercicio09Command;
+
+import java.util.List;
+
+public class Main {
+
+    public static void main(String[] args){
+
+        GameCharacter character = new GameCharacter();
+        GameController controller = new GameController();
+
+        List<Command> actions = List.of(
+                new WalkCommand(character),
+                new JumpCommand(character),
+                new AttackCommand(character),
+                new DefendCommand(character)
+        );
+
+        actions.forEach(controller::PressButton);
+    }
+}
+```
+
+**Captura de ejecución:**
+
+![Captura de ejecución Ejercicio 09](../../../../docs/images/Semana03Ejercicio09.png)
+
+**Explicación:** Las operaciones sobre `GameCharacter` se transforman en objetos que implementan la interfaz `Command`. El `GameController` invoca la ejecución sin necesitar conocer los detalles internos de las acciones del personaje.
+
+---
+
+### Ejercicio 10 – Patrón Iterator (Comportamiento)
+
+Implementación del patrón **Iterator** para recorrer los lugares turísticos de una ruta (`TourRoute`) de forma secuencial.
+
+**Código implementado (`Main.java`):**
+```java
+package dosw.semana_3.comportamiento.ejercicio10Iterator;
+
+public class Main {
+
+    public static void main(String[] args){
+        TourRoute roma = new TourRoute();
+        Tourist tourist = new Tourist();
+
+        tourist.exploreTour(roma);
+    }
+}
+```
+
+**Captura de ejecución:**
+
+![Captura de ejecución Ejercicio 10](../../../../docs/images/Semana03Ejercicio10.png)
+
+**Explicación:** El patrón encapsula los detalles de recorrido de los sitios turísticos detrás de la interfaz `Iterator`, permitiendo que el objeto `Tourist` itere sobre los destinos sin exponer la estructura de datos interna del objeto `TourRoute`.
+
+---
+
+### Ejercicio 11 – Patrón Strategy (Comportamiento)
+
+Implementación del patrón **Strategy** en una aplicación de navegación marítima o terrestre (`NavigationApp`) para seleccionar dinámicamente el algoritmo de cálculo de rutas.
+
+**Código implementado (`Main.java`):**
+```java
+package dosw.semana_3.comportamiento.ejercicio11Estrategy;
+
+public class Main {
+
+    public static void main(String[] args){
+
+        NavigationApp app = new NavigationApp(new FastestRoute());
+        app.startNavigation();
+
+        app.setRouteStragey(new ScenicRoute());
+        app.startNavigation();
+
+        app.setRouteStragey(new CheapestRoute());
+        app.startNavigation();
+    }
+}
+```
+
+**Captura de ejecución:**
+
+![Captura de ejecución Ejercicio 11](../../../../docs/images/Semana03Ejercicio11.png)
+
+**Explicación:** Se define la interfaz `RouteStragey` y sus estrategias concretas (`FastestRoute`, `ScenicRoute`, `CheapestRoute`). `NavigationApp` puede modificar su estrategia en tiempo de ejecución de manera flexible sin alterar la aplicación cliente.
