@@ -1607,3 +1607,288 @@ public class Main {
 ![Captura de ejecución Ejercicio 11](../../../../docs/images/Semana03Ejercicio11.png)
 
 **Explicación:** Se define la interfaz `RouteStragey` y sus estrategias concretas (`FastestRoute`, `ScenicRoute`, `CheapestRoute`). `NavigationApp` puede modificar su estrategia en tiempo de ejecución de manera flexible sin alterar la aplicación cliente.
+
+
+# SEMANA No 4 – Patrones de Diseño Combinados
+
+## Datos personales:
+- **Nombre y Apellido:** Jose Alejandro Martinez Arias
+- **Código de Estudiante:** 1000104385
+- **Curso:** DOSW
+
+---
+
+### Ejercicio 01 – Plataforma de Pagos Inteligentes (Strategy + Factory Method)
+
+**Código implementado (`Main.java`):**
+```java
+package semana_3.patterDesignSolid.strategyFactoryMethod;
+
+public class Main {
+    public static void main(String[] args){
+        PaymentFactory paymentFactory = new ColombiaPaymentFactory();
+        PaymentFactory paymentFactory1 = new UsaPaymentFactory();
+
+        Checkout checkout = new Checkout("colombia",paymentFactory.create("nequi"));
+        checkout.pay(50);
+    }
+}
+```
+
+**Captura de ejecución:**
+
+![Captura de ejecución Ejercicio 01](../../../../docs/images/Semana04Ejercicio01.png)
+
+**Explicación:** **Strategy** encapsula cada algoritmo de pago en una clase independiente (`TarjetaStrategy`, `PseStrategy`, `NequiStrategy`). El `Checkout` trabaja con la interfaz `PaymentStrategy` sin importar cuál medio se use. **Factory Method** crea el proveedor correcto según el país del usuario (`ColombiaPaymentFactory`, `UsaPaymentFactory`). El cliente no sabe qué objeto concreto se construye. Strategy resuelve "cómo pagar" y Factory resuelve "quién construye el que paga".
+
+---
+
+### Ejercicio 02 – Sistema de Notificaciones Multicanal (Observer + Factory Method)
+
+**Código implementado (`Main.java`):**
+```java
+package semana_3.patterDesignSolid.observerFactoryMethod;
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("--- Sistema de Notificaciones Multicanal ---");
+
+        Order order = new Order();
+
+        order.suscribe(new EmailNotifier());
+        order.suscribe(new SmsNotifier());
+        order.suscribe(new PushNotifier());
+
+        System.out.println("\nCambiando estado a: pendiente");
+        order.setStateOrder(StateOrder.ENVIADO);
+    }
+}
+```
+
+**Captura de ejecución:**
+
+![Captura de ejecución Ejercicio 02](../../../../docs/images/Semana04Ejercicio02.png)
+
+**Explicación:** **Observer** desacopla el pedido de los canales. El `Pedido` es el Subject y los Notifiers son Observers. Agregar un canal nuevo no modifica el Pedido. **Factory Method** crea el mensaje correcto para cada canal (`EmailMessageFactory`, `SmsMessageFactory`, `PushMessageFactory`). Observer desacopla al emisor y Factory desacopla la construcción del mensaje.
+
+---
+
+### Ejercicio 03 – Sistema de Reportes Empresariales (Template Method + Factory Method)
+
+**Código implementado (`Main.java`):**
+```java
+package semana_3.patterDesignSolid.templateMethodFactoryMethod;
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("=== Reporte PDF ===");
+        ReportGenerator pdfReport = ReportFactory.create("PDF");
+        pdfReport.generate();
+
+        System.out.println("\n=== Reporte Excel ===");
+        ReportGenerator excelReport = ReportFactory.create("EXCEL");
+        excelReport.generate();
+    }
+}
+```
+
+**Captura de ejecución:**
+
+![Captura de ejecución Ejercicio 03](../../../../docs/images/Semana04Ejercicio03.png)
+
+**Explicación:** **Template Method** define la estructura del algoritmo en la clase base `ReportGenerator` con un método final `generate()` que llama en orden los pasos, dejando los variables (`applyFormat`, `exportFile`) abstractos. **Factory Method** crea la instancia correcta (`PdfReport`, `CsvReport`) según la solicitud dinámicamente.
+
+---
+
+### Ejercicio 04 – Plataforma de Videojuegos (Builder + Decorator)
+
+**Código implementado (`Main.java`):**
+```java
+package semana_3.patterDesignSolid.builderDecorator;
+
+public class Main {
+    public static void main(String[] args){
+        BuilderWarrior builder = new BuilderWarrior();
+        Character warrior = builder.setArmor("steel")
+                .setWeapon("sword")
+                .setSkill("rage").build();
+
+        Character powered = new ShieldDecorator(
+                new SpeedDecorator(warrior)
+        );
+
+        System.out.println(powered.getArmor());
+        System.out.println(powered.getSkill());
+    }
+}
+```
+
+**Captura de ejecución:**
+
+![Captura de ejecución Ejercicio 04](../../../../docs/images/Semana04Ejercicio04.png)
+
+**Explicación:** **Builder** construye el personaje paso a paso al inicio (armadura, arma, habilidad) mediante `WarriorBuilder`. **Decorator** agrega poderes dinámicamente sin modificar la clase base del personaje (`ShieldDecorator`, `SpeedDecorator`). Builder crea la base configurable y Decorator añade mejoras temporales sin explosión combinatoria de clases.
+
+---
+
+### Ejercicio 05 – Integración con Sistema Bancario Antiguo (Adapter + Facade)
+
+**Código implementado (`Main.java`):**
+```java
+package semana_3.patterDesignSolid.adapterFacade;
+
+public class Main {
+    public static void main(String[] args) {
+        BankFacade bankFacade = new BankFacade();
+        bankFacade.procesarPago(1500.00);
+        bankFacade.procesarPago(7500.00);
+    }
+}
+```
+
+**Captura de ejecución:**
+
+![Captura de ejecución Ejercicio 05](../../../../docs/images/Semana04Ejercicio05.png)
+
+**Explicación:** **Adapter** hace que `LegacyBankService` (antiguo, en centavos) sea compatible con la interfaz moderna `PaymentProcessor` mediante `LegacyBankAdapter`. **Facade** expone un método simple `procesarPago(monto)` que internamente orquesta los múltiples pasos de inicialización que el desarrollador no necesita conocer. La Facade usa el Adapter internamente.
+
+---
+
+### Ejercicio 06 – Motor de Recomendaciones (Strategy + Observer)
+
+**Código implementado (`Main.java`):**
+```java
+package semana_3.patterDesignSolid.strategyObserver;
+
+public class Main {
+    public static void main(String[] args) {
+        User user = new User("Jose", new GenreStrategy());
+
+        user.addObserver(new HomePageComponent());
+        user.addObserver(new SuggestedListComponent());
+
+        user.changePreference(new HistoryStrategy());
+        user.changePreference(new PopularityStrategy());
+    }
+}
+```
+
+**Captura de ejecución:**
+
+![Captura de ejecución Ejercicio 06](../../../../docs/images/Semana04Ejercicio06.png)
+
+**Explicación:** **Strategy** permite intercambiar el algoritmo de recomendación en tiempo de ejecución (`GenreStrategy`, `HistoryStrategy`). **Observer** notifica automáticamente a todos los componentes de UI (`HomePageComponent`, `SuggestedListComponent`) cuando cambian las preferencias, logrando que cambiar el algoritmo dispare el aviso de actualización sin acoplar los componentes.
+
+---
+
+### Ejercicio 07 – Flujo de Aprobación de Documentos (Chain of Responsibility + State)
+
+**Código implementado (`Main.java`):**
+```java
+package semana_3.patterDesignSolid.chainOfResponsibilityState;
+
+public class Main {
+    public static void main(String[] args) {
+        AutorHandler autor = new AutorHandler();
+        LiderHandler lider = new LiderHandler();
+        JuridicoHandler juridico = new JuridicoHandler();
+        
+        autor.setNext(lider).setNext(juridico);
+
+        Document contrato = new Document("Contrato", "contrato", "Texto...");
+        autor.handle(contrato);
+    }
+}
+```
+
+**Captura de ejecución:**
+
+![Captura de ejecución Ejercicio 07](../../../../docs/images/Semana04Ejercicio07.png)
+
+**Explicación:** **Chain of Responsibility** encadena los validadores (Autor, Líder, Jurídico) que deciden si procesan el documento o lo pasan al siguiente. **State** maneja las transiciones de estado del documento (Borrador, En revisión, Aprobado). Un handler de la cadena procesa el documento e invoca `approve()`, y el objeto State actual ejecuta la transición sin usar condicionales `switch`.
+
+---
+
+### Ejercicio 08 – Sistema de Pedidos en Restaurante (Builder + Observer)
+
+**Código implementado (`Main.java`):**
+```java
+package semana_3.patterDesignSolid.builderObserver;
+
+public class Main {
+    public static void main(String[] args) {
+        Order order = new OrderBuilder()
+                .setSize(Size.LARGE)
+                .setMeat(Meat.DOUBLE_BEEF)
+                .addTopping("queso", "lechuga")
+                .build();
+
+        order.addObserver(new KitchenService());
+        order.addObserver(new DeliveryService());
+        order.confirm();
+    }
+}
+```
+
+**Captura de ejecución:**
+
+![Captura de ejecución Ejercicio 08](../../../../docs/images/Semana04Ejercicio08.png)
+
+**Explicación:** **Builder** construye el pedido personalizado paso a paso para garantizar que sea completo y válido al crearse, devolviendo un `Order` inmutable. **Observer** notifica a los subsistemas (Cocina, Domicilio) cuando el pedido se confirma, de forma que la confirmación desencadena reacciones de distintos departamentos sin que el pedido conozca a quién avisa.
+
+---
+
+### Ejercicio 09 – Sistema de Autenticación Empresarial (Strategy + Chain of Responsibility)
+
+**Código implementado (`Main.java`):**
+```java
+package semana_3.patterDesignSolid.strategyChainOfResponsability;
+
+public class Main {
+    public static void main(String[] args){
+        CredentialValidator credentialValidator = new CredentialValidator();
+        PermissionValidator permissionValidator = new PermissionValidator();
+        credentialValidator.setNext(permissionValidator);
+
+        Credentials credentials = new Credentials("Jose", List.of("admin"), "google");
+        AuthtService authtService = new AuthtService(new GoogleStrategy());
+        
+        AuthResult authResult = authtService.authentication(credentials);
+        credentialValidator.handleAcces(authResult);
+    }
+}
+```
+
+**Captura de ejecución:**
+
+![Captura de ejecución Ejercicio 09](../../../../docs/images/Semana04Ejercicio09.png)
+
+**Explicación:** **Strategy** selecciona el mecanismo de autenticación (`GoogleStrategy`, `PasswordStrategy`) respondiendo a "cómo me autentico". **Chain of Responsibility** procesa validaciones en secuencia (credenciales, permisos, ubicación) posteriores, decidiendo "si tengo acceso". Son fases separadas de identificación y autorización.
+
+---
+
+### Ejercicio 10 – Aplicación de Edición de Imágenes (Decorator + Command)
+
+**Código implementado (`Main.java`):**
+```java
+package semana_3.patterDesignSolid.decoratorCommand;
+
+import java.awt.image.BufferedImage;
+
+public class Main {
+    public static void main(String[] args){
+        Editor canvas = new Editor(new BaseImage(new BufferedImage(20,20,3)));
+        CommandInvoker invoker = new CommandInvoker();
+
+        invoker.executeCommand(new ApplySepiaCommand(canvas));
+        invoker.executeCommand(new ApplyGrayscaleCommand(canvas));
+        invoker.undo();
+    }
+}
+```
+
+**Captura de ejecución:**
+
+![Captura de ejecución Ejercicio 10](../../../../docs/images/Semana04Ejercicio10.png)
+
+**Explicación:** **Decorator** aplica filtros (`SepiaDecorator`, `GrayscaleDecorator`) de forma acumulativa envolviendo la imagen sin modificarla. **Command** encapsula cada operación del usuario en objetos que manejan los historiales, logrando que al ejecutar "deshacer", el Command quite el último decorador agregado a la cadena. Se complementan al separar la operación (Command) del efecto visual (Decorator).
