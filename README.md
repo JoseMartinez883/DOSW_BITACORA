@@ -1892,3 +1892,8 @@ public class Main {
 ![Captura de ejecución Ejercicio 10](../../../../docs/images/Semana04Ejercicio10.png)
 
 **Explicación:** **Decorator** aplica filtros (`SepiaDecorator`, `GrayscaleDecorator`) de forma acumulativa envolviendo la imagen sin modificarla. **Command** encapsula cada operación del usuario en objetos que manejan los historiales, logrando que al ejecutar "deshacer", el Command quite el último decorador agregado a la cadena. Se complementan al separar la operación (Command) del efecto visual (Decorator).
+
+
+Manual Identidad
+Link manual de identidad: https://www.figma.com/make/p06zY8wKFTGVOrOVjJ6OoO/Create-a-slide?p=f&t=fT9JAKCBrbIZg4nT-0&fullscreen=1
+Link de mockup: https://www.figma.com/make/WsPm1USTFgrlyECkSavk7G/%C3%81mbar-app-dise%C3%B1o-m%C3%B3vil--copia-?p=f&t=6BEXVyrmkIl8WuQ1-0&fullscreen=1
